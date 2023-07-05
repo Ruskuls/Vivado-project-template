@@ -1,5 +1,5 @@
 the_ROM_image:
 {
-/home/rinalds/Documents/FPGA/Xilinx-bootloader/src/software/flash/main.elf.srec
+/home/rinalds/Documents/FPGA/Vivado-project-template/src/software/flash/main.elf.srec
 }
 
