@@ -1,4 +1,4 @@
-set proj_name "Bootloader"
+set proj_name "template"
 set part "xc7s25ftgb196-1"
 set flash "n25q64-3.3v-spi-x1_x2_x4"
 
