@@ -1,0 +1,3 @@
+[submodule "src/hdl/HyperRam"]
+	path = src/hdl/HyperRam
+	url = git@github.com:Ruskuls/HyperRAM.git

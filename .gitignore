@@ -1,0 +1,24 @@
+vivado
+__pycache__
+
+!SCH-TE0890-01-06-1C.PDF
+
+src/ip/*/*
+!src/ip/*/*.xci
+
+# Do not track files from software folder
+src/software/*
+!src/software/app
+!src/software/fsbl
+!src/software/flash
+!src/software/flash/bootimage.bif
+
+# Testbench simulations
+!src/tb_simulation/*
+src/tb_simulation/**/vunit_out
+
+# Ignore Vivado log files
+*.log
+*.jou
+*.str
+**/.Xil
