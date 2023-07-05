@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "name": "MicroBlaze",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../../**"
+            ]
+        }
+    ],
+    "version": 4
+}
