@@ -8,6 +8,7 @@ open_hw_manager
 connect_hw_server -allow_non_jtag
 open_hw_target
 
+
 # process if received CMD is to programm fpga directly, than exit
 if {[string match $CMD "prog"] == 1} {
     puts "INFO: programming FPGA"
@@ -46,7 +47,21 @@ if { [string match $CMD "flash"] == 1} {
     puts "INFO: create srec"
     set prog_log [exec mb-objcopy -O srec $sdk_app_elf_dir/main.elf $sdk_dir/flash/main.elf.srec]
     puts $prog_log
-    set prog_log [exec bootgen -arch fpga -image $sdk_dir/flash/bootimage.bif -w -o $sdk_dir/flash/BOOT.bin -interface spi]
+
+    # generate bootimage.bif file
+    # go to src/software/flash directory
+    cd $sdk_dir/flash
+    set fp [open "bootimage.bif" w+]
+    puts $fp "the_ROM_image:"
+    puts $fp "{"
+    puts $fp [file normalize main.elf.srec]
+    puts $fp "}"
+    close $fp
+
+    #retun to home directory
+    cd ../../../
+
+set prog_log [exec bootgen -arch fpga -image $sdk_dir/flash/bootimage.bif -w -o $sdk_dir/flash/BOOT.bin -interface spi]
     puts $prog_log
     set $prog_log [exec program_flash -f $sdk_dir/flash/BOOT.bin -offset 0x00130000 -flash_type n25q64-3.3v-spi-x1_x2_x4 -verify -url TCP:127.0.0.1:3121]
     puts $prog_log
